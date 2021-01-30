@@ -8,6 +8,7 @@ const port = process.env.PORT || 8001
 const connection_url = 'mongodb+srv://admin:dGakD2MeWQprWN02@cluster0.stgq9.mongodb.net/tinderdb?retryWrites=true&w=majority'
 
 //Middleware
+app.use(express.json())
 
 //DB Config
 mongoose.connect(connection_url, {
@@ -18,7 +19,7 @@ mongoose.connect(connection_url, {
 
 //API Endpoints
 app.get('/', (req, res) => res.status(200).send("Hello World"));
-app.post('/tinder/card', (req, res) => {
+app.post('/tinder/cards', (req, res) => {
     const dbCard = req.body;
 
     Cards.create(dbCard, (err, data) => {
@@ -31,7 +32,7 @@ app.post('/tinder/card', (req, res) => {
     } )
 })
 
-app.get('/tinder/card', (req, res) => {
+app.get('/tinder/cards', (req, res) => {
     Cards.find((err, data) => {
         if(err){
             res.status(500).send(error);
