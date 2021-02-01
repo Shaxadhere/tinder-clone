@@ -1,19 +1,22 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './TinderCards.css'
 import TinderCard from 'react-tinder-card'
+import ax from './axios.js'
 
 
 function TinderCards() {
-    const [people, setPeople] = useState([
-        {
-            name: "Elon Musk",
-            url: "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
-        },
-        {
-            name: "Jeff Bezoz",
-            url: "https://www.gstatic.com/tv/thumb/persons/532529/532529_v9_bb.jpg",
-        },
-    ]);
+    
+    const [people, setPeople] = useState([]);
+
+    useEffect(() => {
+        async function fetchData(){
+            const req = await ax.get('tinder/cards');
+
+            setPeople(req.data);
+        }
+
+        fetchData();
+    }, [])
 
     const swiped = (direction, nameToDelete) => {
         console.log("removing: " + nameToDelete);

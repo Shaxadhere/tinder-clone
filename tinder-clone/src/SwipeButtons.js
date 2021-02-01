@@ -23,7 +23,7 @@ function SwipeButtons() {
                 <FavoriteIcon fontSize="large" />
             </IconButton>
             <IconButton className="swipeButtons__lightning">
-                <FavoriteIcon fontSize="large" />
+                <FlashOnIcon fontSize="large" />
             </IconButton>
         </div>
     )
